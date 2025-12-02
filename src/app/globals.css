@@ -1,26 +1,67 @@
+@import "@fontsource/staatliches";
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-display: "Staatliches", sans-serif;
+  --font-body: "Archivo Condensed", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-red: #FF3651;
+  --color-brand-navy: #002A42;
+  --color-text-body: #2D2F31;
+  --color-blue-50: #203B51;
+  --color-blue-100: #1D578E;
+  --color-blue-200: #002A42;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: white;
+    --foreground: #000000;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+}
+
+/* Grid con PNG y opacidad controlable */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/grid-bg.png");
+  background-repeat: repeat;
+  background-size: 50%;      /* puedes seguir jugando con 50, 64, 80… */
+  opacity: 0.18;             /* 👈 AQUÍ controlas qué tan fuerte se ve el grid */
+  pointer-events: none;      /* para que no bloquee clicks */
+  z-index: -1;               /* se queda detrás de todo el contenido */
+}
+
